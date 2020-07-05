@@ -1,0 +1,11 @@
+﻿@model List<ASPFinal.Models.Tags>
+    <div class="single-blog-widget">
+        <h3>tags</h3>
+        <div class="single-tag">
+            @foreach (var item in Model)
+            {
+                <a href="@Url.Action("Index","BlogDetails")" class="mr-10 mb-10">@item.Name</a>
+            }
+        </div>
+    </div>
+

@@ -1,0 +1,22 @@
+﻿@model List<ASPFinal.Models.Events>
+<div class="single-blog-widget mb-50">
+    <h3>latest post</h3>
+    @foreach (var item in Model.Take(3))
+    {
+        <div class="single-post mb-30">
+            <div class="single-post-img">
+                <a href="@Url.Action("Index","BlogDetails")">
+                    <img src="~/Uploads/@item.Image" width="80" alt="post">
+                    <div class="blog-hover">
+                        <i class="fa fa-link"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="single-post-content">
+                <h4><a href="@Url.Action("Index","BlogDetails")">@item.Title</a></h4>
+                <p>By Alex  /@item.Time</p>
+            </div>
+        </div>
+    }
+</div>
+

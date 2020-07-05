@@ -1,0 +1,105 @@
+﻿
+@model ASPFinal.ViewModels.vmEventRight
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>event / details</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- Event Details Start -->
+<div class="event-details-area blog-area pt-150 pb-140">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="event-details">
+                    <div class="event-details-img">
+                        <img src="~/Uploads/@Model.Event.Image" width="800" style="height:400px" alt="event-details">
+                        <div class="event-date">
+                            <h3>@Model.Event.Date.Day <span>jun</span></h3>
+                        </div>
+                    </div>
+                    <div class="event-details-content">
+                        <h2>ADVANCE WED DEVELOPMENT WORKSHOP</h2>
+                        <ul>
+                            <li><span>time : </span>@Model.Event.Time</li>
+                            <li><span>venue : </span>@Model.Event.Venue</li>
+                        </ul>
+                        <p>@Model.Event.Text</p>
+                        <p>@Model.Event.Text</p>
+
+                        <div class="speakers-area fix">
+                            <h4>speakers</h4>
+                            @foreach (var item in Model.Speakers)
+                            {
+                                <div class="single-speaker">
+                                    <div class="speaker-img">
+                                        <img src="~/Uploads/@item.Image" alt="speaker">
+                                    </div>
+                                    <div class="speaker-name">
+                                        <h5>@item.Name</h5>
+                                        <p>@item.Profession </p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    @{
+                        Html.RenderPartial("~/Views/Shared/MessagePartial.cshtml", Model.Messages);
+                    }
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="blog-sidebar right">
+                    <div class="single-blog-widget mb-50">
+                        <h3>search</h3>
+                        <div class="blog-search">
+                            <form id="search" action="#">
+                                <input type="search" placeholder="Search..." name="search" />
+                                <button type="submit">
+                                    <span><i class="fa fa-search"></i></span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    @{
+                        Html.RenderPartial("~/Views/Shared/RightPartial.cshtml", Model.Categories);
+                    }
+
+                    <div class="single-blog-widget mb-50">
+                        <div class="single-blog-banner">
+                            <a href="@Url.Action("Index","BlogDetails")" id="blog"><img src="~/Public/img/blog/blog-img.jpg" alt="blog"></a>
+                            <h2>best<br> eductaion<br> theme</h2>
+                        </div>
+                    </div>
+
+                    @{
+                        Html.RenderPartial("~/Views/Shared/EventPartial.cshtml", Model.Events);
+                    }
+
+
+                    @{
+                        Html.RenderPartial("~/Views/Shared/TagsPartial.cshtml", Model.Tags);
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Event Details End -->

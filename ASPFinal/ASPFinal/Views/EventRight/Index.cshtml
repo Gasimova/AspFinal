@@ -1,0 +1,99 @@
+﻿@model ASPFinal.ViewModels.vmEventRight
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>event / right side bar</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- Blog Start -->
+<div class="blog-area event-area three text-center pt-150 pb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    @foreach (var item in Model.Events.OrderByDescending(o=>o.Id).Take(6))
+                    {
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="single-event mb-60">
+                                <div class="event-img">
+                                    <a href="@Url.Action("Details","Event", new { id=item.Id})">
+                                        <img src="~/Uploads/@item.Image" alt="event">
+                                        <div class="course-hover">
+                                            <i class="fa fa-link"></i>
+                                        </div>
+                                    </a>
+                                    <div class="event-date">
+                                        <h3>@item.Date.Day <span>jun</span></h3>
+                                    </div>
+                                </div>
+                                <div class="event-content text-left">
+                                    <h4><a href="@Url.Action("Details","Event", new { id=item.Id})">@item.Title</a></h4>
+                                    <ul>
+                                        <li><span>time:</span> @item.Time</li>
+                                        <li><span>venue</span> @item.Venue</li>
+                                    </ul>
+                                    <div class="event-content-right">
+                                        <a class="default-btn" href="@Url.Action("Details","Event", new { id=item.Id})">join now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="blog-sidebar right text-left">
+                    <div class="single-blog-widget mb-50">
+                        <h3>search</h3>
+                        <div class="blog-search">
+                            <form id="search" action="#">
+                                <input type="search" placeholder="Search..." name="search" />
+                                <button type="submit">
+                                    <span><i class="fa fa-search"></i></span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    @{
+                        Html.RenderPartial("~/Views/Shared/RightPartial.cshtml", Model.Categories);
+                    }
+
+                    <div class="single-blog-widget mb-50">
+                        <div class="single-blog-banner">
+                            <a href="@Url.Action("Index","BlogDetails")" id="blog"><img src="~/Public/img/blog/blog-img.jpg" alt="blog"></a>
+                            <h2>best<br> eductaion<br> theme</h2>
+                        </div>
+                    </div>
+
+                    @{
+                        Html.RenderPartial("~/Views/Shared/EventPartial.cshtml", Model.Events);
+                    }
+
+
+                    @{
+                        Html.RenderPartial("~/Views/Shared/TagsPartial.cshtml", Model.Tags);
+                    }
+
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog End -->
